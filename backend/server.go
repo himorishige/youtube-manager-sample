@@ -23,6 +23,7 @@ func main() {
 
 	// Middleware
 	e.Use(middleware.Logger())
+	e.Use(middleware.CORS())
 
 	// Routes
 	routes.Init(e)
