@@ -25,6 +25,11 @@ func FetchMostPopularVideos() echo.HandlerFunc {
 		k := []string{"id", "snippet"}
 		call := yts.Videos.List(k).Chart("mostPopular").MaxResults(3)
 
+		pageToken := c.QueryParam("pageToken")
+		if len(pageToken) > 0 {
+			call = call.PageToken(pageToken)
+		}
+
 		res, err := call.Do()
 
 		if err != nil {
